@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Formulario de Afiliación · Cholula Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --pri:#C8102E;   /* FUNDAMEE rojo */
+  --gold:#F5A800;  /* FUNDAMEE dorado */
+  --prihov:#A50D26;
+  --bg:#F4F6F9;
+  --surf:#FFFFFF;
+  --border:#DDE3EC;
+  --text:#1A2340;
+  --sub:#6B7A99;
+  --light:#FEF9F0;
+  --success:#1A7A3C;
+  --green:#E8F7EE;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;min-height:100vh;}
+
+/* TOP HEADER */
+.top-header{background:var(--pri);padding:0;display:flex;align-items:stretch;}
+.th-brand{padding:14px 24px;display:flex;align-items:center;gap:12px;}
+.th-logo{width:40px;height:40px;border-radius:10px;background:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#1A1A1A;}
+.th-name{color:#fff;font-weight:800;font-size:16px;line-height:1.2;}
+.th-sub{color:rgba(255,255,255,0.7);font-size:11px;}
+.th-right{margin-left:auto;padding:14px 24px;display:flex;align-items:center;}
+.th-badge{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:100px;padding:5px 14px;font-size:12px;color:#fff;font-weight:600;}
+
+/* PROGRESS */
+.prog-wrap{background:var(--surf);border-bottom:1px solid var(--border);padding:14px 20px;}
+.prog-inner{max-width:680px;margin:0 auto;}
+.steps-row{display:flex;align-items:center;margin-bottom:10px;}
+.st{display:flex;align-items:center;gap:6px;flex:1;}
+.st-circle{width:26px;height:26px;border-radius:50%;border:2px solid var(--border);background:var(--surf);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--sub);flex-shrink:0;transition:all .25s;}
+.st-circle.act{border-color:var(--pri);background:var(--pri);color:#fff;}
+.st-circle.done{border-color:var(--success);background:var(--success);color:#fff;}
+.st-lbl{font-size:11px;font-weight:600;color:var(--sub);white-space:nowrap;}
+.st-lbl.act{color:var(--pri);}
+.st-sep{flex:1;height:2px;background:var(--border);margin:0 6px;transition:background .25s;}
+.st-sep.done{background:var(--success);}
+.prog-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--pri),var(--gold));border-radius:2px;transition:width .4s;}
+
+/* MAIN */
+.main{max-width:680px;margin:0 auto;padding:20px 16px 60px;}
+
+/* CARD */
+.card{background:var(--surf);border:1px solid var(--border);border-radius:16px;padding:24px 22px;margin-bottom:14px;}
+.card-head{margin-bottom:18px;}
+.card-title{font-size:19px;font-weight:800;color:var(--text);margin-bottom:3px;}
+.card-sub{font-size:13px;color:var(--sub);line-height:1.5;}
+
+/* SECTION LABEL */
+.sec{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;color:var(--pri);text-transform:uppercase;letter-spacing:1px;margin:18px 0 10px;}
+.sec-line{flex:1;height:1px;background:var(--border);}
+
+/* FIELDS */
+.field{margin-bottom:14px;}
+.field label{display:block;font-size:12px;font-weight:700;color:var(--text);margin-bottom:5px;}
+.field .hint{font-size:11px;color:var(--sub);margin-bottom:5px;font-weight:400;}
+.field input,.field select,.field textarea{
+  width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;
+  font-family:'Nunito',sans-serif;font-size:14px;color:var(--text);background:var(--surf);
+  outline:none;transition:border-color .2s,box-shadow .2s;appearance:none;
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--pri);box-shadow:0 0 0 3px rgba(200,16,46,0.08);
+}
+.field input::placeholder,.field textarea::placeholder{color:#B0BACA;}
+.field select option{background:#fff;}
+.field textarea{resize:vertical;min-height:80px;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+
+/* ROLE CARDS */
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.role-card{border:2px solid var(--border);border-radius:14px;padding:16px 14px;cursor:pointer;transition:all .2s;background:var(--surf);}
+.role-card:hover{border-color:var(--pri);background:#FFF5F6;}
+.role-card.sel-a{border-color:var(--pri);background:#FFF5F6;box-shadow:0 0 0 1px var(--pri);}
+.role-card.sel-b{border-color:var(--gold);background:var(--light);box-shadow:0 0 0 1px var(--gold);}
+.role-icon{font-size:26px;margin-bottom:8px;}
+.role-label{font-size:13px;font-weight:800;color:var(--text);margin-bottom:3px;}
+.role-label-a{color:var(--pri);}
+.role-label-b{color:#B86800;}
+.role-desc{font-size:11px;color:var(--sub);line-height:1.4;}
+
+/* CHIPS */
+.chips{display:flex;flex-wrap:wrap;gap:7px;}
+.chip{padding:7px 13px;border:1.5px solid var(--border);border-radius:100px;cursor:pointer;font-size:12px;font-weight:600;color:var(--sub);background:var(--surf);transition:all .2s;user-select:none;}
+.chip:hover{border-color:var(--pri);color:var(--pri);}
+.chip.sel{border-color:var(--pri);background:#FFF5F6;color:var(--pri);}
+.chip.sel-g{border-color:var(--gold);background:var(--light);color:#B86800;}
+
+/* RADIO */
+.radio-group{display:flex;flex-direction:column;gap:7px;}
+.radio-opt{display:flex;align-items:center;gap:10px;padding:11px 13px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;transition:all .2s;}
+.radio-opt:hover{border-color:var(--pri);}
+.radio-opt.sel{border-color:var(--pri);background:#FFF5F6;}
+.radio-circle{width:16px;height:16px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;position:relative;transition:all .2s;}
+.radio-opt.sel .radio-circle{border-color:var(--pri);background:var(--pri);}
+.radio-opt.sel .radio-circle::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:5px;height:5px;background:#fff;border-radius:50%;}
+.radio-text{font-size:13px;color:var(--sub);}
+.radio-opt.sel .radio-text{color:var(--text);font-weight:600;}
+
+/* INFO BOX */
+.info-box{background:#EBF8FF;border:1px solid #B3DFF5;border-left:3px solid #1A88CC;border-radius:0 10px 10px 0;padding:12px 14px;font-size:12px;color:#1A5580;line-height:1.6;margin:12px 0;}
+.warn-box{background:var(--light);border:1px solid #F5D580;border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:12px 14px;font-size:12px;color:#7A5800;line-height:1.6;margin:12px 0;}
+
+/* REF BOX */
+.ref-box{background:#F0FFF5;border:1px solid #A3E0BC;border-radius:14px;padding:16px;}
+.ref-title{font-size:12px;font-weight:700;color:var(--success);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;}
+
+/* RESUMEN */
+.resumen-grid{display:grid;gap:8px;}
+.res-row{display:flex;gap:12px;padding-bottom:7px;border-bottom:1px solid var(--border);}
+.res-label{font-size:11px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.5px;width:110px;flex-shrink:0;}
+.res-val{font-size:13px;color:var(--text);}
+
+/* PROVIDER SECTION */
+.prov-section{background:var(--light);border:1px solid #F5D580;border-radius:14px;padding:16px;margin-top:14px;}
+.prov-title{font-size:12px;font-weight:700;color:#7A5800;margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+
+/* APORT TYPES */
+.aport-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.aort{border:1.5px solid var(--border);border-radius:12px;padding:12px 10px;cursor:pointer;transition:all .2s;background:var(--surf);}
+.aort:hover{border-color:var(--gold);}
+.aort.sel{border-color:var(--gold);background:var(--light);}
+.aort-icon{font-size:18px;margin-bottom:5px;}
+.aort-label{font-size:11px;font-weight:700;color:var(--text);}
+.aort-desc{font-size:10px;color:var(--sub);margin-top:2px;}
+.aort.sel .aort-label{color:#7A5800;}
+
+/* BUTTONS */
+.btn-row{display:flex;flex-direction:column;gap:8px;}
+.btn-pri{width:100%;padding:14px;background:var(--pri);border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:#fff;cursor:pointer;transition:background .2s,transform .15s;}
+.btn-pri:hover{background:var(--prihov);transform:translateY(-1px);}
+.btn-sec{width:100%;padding:12px;background:var(--surf);border:1.5px solid var(--border);border-radius:12px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;transition:all .2s;}
+.btn-sec:hover{border-color:var(--pri);color:var(--pri);}
+.trust-row{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:12px;}
+.tr-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--sub);}
+.tr-dot{width:5px;height:5px;border-radius:50%;background:var(--success);}
+
+/* SUCCESS */
+.success-wrap{display:none;text-align:center;padding:32px 0;}
+.succ-icon{width:68px;height:68px;border-radius:50%;background:var(--green);border:2px solid var(--success);margin:0 auto 18px;display:flex;align-items:center;justify-content:center;font-size:28px;}
+.succ-h2{font-size:24px;font-weight:800;margin-bottom:8px;}
+.succ-p{font-size:14px;color:var(--sub);line-height:1.6;max-width:340px;margin:0 auto 20px;}
+.folio-box{background:var(--green);border:1px solid #A3E0BC;border-radius:14px;padding:14px;max-width:280px;margin:0 auto 20px;}
+.folio-lbl{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--success);margin-bottom:4px;font-weight:700;}
+.folio-num{font-size:26px;font-weight:800;color:var(--success);}
+.role-badge{display:inline-block;padding:5px 16px;border-radius:100px;font-size:12px;font-weight:700;margin-bottom:14px;}
+
+.step{display:none;}.step.active{display:block;}
+.footer{text-align:center;padding:16px;font-size:11px;color:var(--sub);line-height:1.9;}
+.footer a{color:var(--pri);}
+</style>
+</head>
+<body>
+
+<!-- TOP HEADER -->
+<div class="top-header">
+  <div class="th-brand">
+    <div class="th-logo">CC</div>
+    <div>
+      <div class="th-name">Cholula Center</div>
+      <div class="th-sub">Programa de Afiliación · FUNDAMEE</div>
+    </div>
+  </div>
+  <div class="th-right">
+    <div class="th-badge">✦ Afiliación gratuita</div>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="prog-wrap">
+  <div class="prog-inner">
+    <div class="steps-row">
+      <div class="st"><div class="st-circle act" id="c1">1</div><div class="st-lbl act" id="l1">Tu tipo</div></div>
+      <div class="st-sep" id="sp1"></div>
+      <div class="st"><div class="st-circle" id="c2">2</div><div class="st-lbl" id="l2">Contacto</div></div>
+      <div class="st-sep" id="sp2"></div>
+      <div class="st"><div class="st-circle" id="c3">3</div><div class="st-lbl" id="l3">Perfil</div></div>
+      <div class="st-sep" id="sp3"></div>
+      <div class="st"><div class="st-circle" id="c4">4</div><div class="st-lbl" id="l4">Intereses</div></div>
+      <div class="st-sep" id="sp4"></div>
+      <div class="st"><div class="st-circle" id="c5">5</div><div class="st-lbl" id="l5">Confirmar</div></div>
+    </div>
+    <div class="prog-bar"><div class="prog-fill" id="pfill" style="width:10%"></div></div>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ═══ STEP 1: TIPO ═══ -->
+<div class="step active" id="step-1">
+  <div class="card">
+    <div class="card-head">
+      <div class="card-title">¿Cómo quieres participar?</div>
+      <div class="card-sub">Elige el tipo de afiliación que mejor te describe. Puedes cambiar de tipo en cualquier momento.</div>
+    </div>
+
+    <div class="role-grid">
+      <div class="role-card" id="btn-a" onclick="setTipo('A')">
+        <div class="role-icon">🎁</div>
+        <div class="role-label role-label-a">Tipo A · Beneficiario</div>
+        <div class="role-desc">Quiero acceder a los beneficios del ecosistema Cholula Center: tarifas preferenciales, acceso prioritario, eventos y campañas personalizadas.</div>
+      </div>
+      <div class="role-card" id="btn-b" onclick="setTipo('B')">
+        <div class="role-icon">⚡</div>
+        <div class="role-label role-label-b">Tipo B · Beneficiario + Proveedor</div>
+        <div class="role-desc">Además de los beneficios, quiero ofrecer un bien o servicio a la red de afiliados según mi giro o profesión.</div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>Ambos tipos son 100% gratuitos.</strong> La diferencia es que el Tipo B además contribuye con algo al ecosistema y recibe reconocimiento especial por ello.
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn-pri" onclick="go(2)">Continuar →</button>
+  </div>
+  <div class="trust-row">
+    <div class="tr-item"><div class="tr-dot"></div>Sin costo</div>
+    <div class="tr-item"><div class="tr-dot"></div>Sin compromisos</div>
+    <div class="tr-item"><div class="tr-dot"></div>Datos protegidos</div>
+    <div class="tr-item"><div class="tr-dot"></div>Folio automático</div>
+  </div>
+</div>
+
+<!-- ═══ STEP 2: CONTACTO ═══ -->
+<div class="step" id="step-2">
+  <div class="card">
+    <div class="card-head">
+      <div class="card-title">Datos de contacto</div>
+      <div class="card-sub">Información básica para gestionar tu afiliación y conectarte con la red.</div>
+    </div>
+
+    <div class="field">
+      <label>Nombre completo / Razón social *</label>
+      <input type="text" id="nombre" placeholder="Ej. María García López / Restaurante El Patio"/>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Correo electrónico *</label>
+        <input type="email" id="email" placeholder="correo@dominio.com"/>
+      </div>
+      <div class="field">
+        <label>WhatsApp / Teléfono *</label>
+        <input type="tel" id="tel" placeholder="222 000 0000"/>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Municipio / Ciudad *</label>
+        <select id="municipio">
+          <option value="">Selecciona...</option>
+          <option>San Andrés Cholula</option>
+          <option>San Pedro Cholula</option>
+          <option>Puebla Capital</option>
+          <option>Cuautlancingo</option>
+          <option>Huejotzingo</option>
+          <option>Atlixco</option>
+          <option>Amozoc</option>
+          <option>Tehuacán</option>
+          <option>Otro municipio de Puebla</option>
+          <option>Fuera del estado</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Código postal</label>
+        <input type="text" id="cp" placeholder="72000" maxlength="5"/>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Tipo de perfil *</label>
+        <select id="tipo-perfil">
+          <option value="">Selecciona...</option>
+          <option>Persona física</option>
+          <option>PYME / Negocio local (1–20 empleados)</option>
+          <option>Empresa mediana (21–100 empleados)</option>
+          <option>Empresa grande (100+ empleados)</option>
+          <option>Institución educativa</option>
+          <option>Organización civil o fundación</option>
+          <option>Profesionista independiente / Freelancer</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Giro o actividad principal *</label>
+        <input type="text" id="giro" placeholder="Ej. Gastronomía · Pádel · Consultoría..."/>
+      </div>
+    </div>
+
+    <div class="sec"><span>Canal de contacto preferido</span><div class="sec-line"></div></div>
+    <div class="chips" id="canales-chips">
+      <div class="chip sel" onclick="chip(this)">📱 WhatsApp</div>
+      <div class="chip" onclick="chip(this)">📧 Email</div>
+      <div class="chip" onclick="chip(this)">📸 Instagram</div>
+      <div class="chip" onclick="chip(this)">📘 Facebook</div>
+      <div class="chip" onclick="chip(this)">💼 LinkedIn</div>
+      <div class="chip" onclick="chip(this)">📞 Llamada</div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn-sec" onclick="go(1)">← Atrás</button>
+    <button class="btn-pri" onclick="go(3)">Continuar →</button>
+  </div>
+</div>
+
+<!-- ═══ STEP 3: PERFIL DEMOGRÁFICO ═══ -->
+<div class="step" id="step-3">
+  <div class="card">
+    <div class="card-head">
+      <div class="card-title">Perfil demográfico</div>
+      <div class="card-sub">Esta información nos permite crear campañas y análisis relevantes para tu perfil. Es confidencial y no se comparte con terceros.</div>
+    </div>
+
+    <div class="sec"><span>Datos personales</span><div class="sec-line"></div></div>
+    <div class="row3">
+      <div class="field">
+        <label>Edad *</label>
+        <select id="edad">
+          <option value="">Selecciona...</option>
+          <option>Menos de 18 años</option>
+          <option>18 – 24 años</option>
+          <option>25 – 34 años</option>
+          <option>35 – 44 años</option>
+          <option>45 – 54 años</option>
+          <option>55 – 64 años</option>
+          <option>65 años o más</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Género *</label>
+        <select id="genero">
+          <option value="">Selecciona...</option>
+          <option>Mujer</option>
+          <option>Hombre</option>
+          <option>No binario</option>
+          <option>Prefiero no decir</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Estado civil</label>
+        <select id="estado-civil">
+          <option value="">Selecciona...</option>
+          <option>Soltero/a</option>
+          <option>Casado/a o unión libre</option>
+          <option>Divorciado/a</option>
+          <option>Viudo/a</option>
+        </select>
+      </div>
+    </div>
+    <div class="row3">
+      <div class="field">
+        <label>Número de hijos</label>
+        <select id="hijos">
+          <option value="">Selecciona...</option>
+          <option>Sin hijos</option>
+          <option>1 hijo</option>
+          <option>2 hijos</option>
+          <option>3 o más hijos</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Nivel de estudios *</label>
+        <select id="estudios">
+          <option value="">Selecciona...</option>
+          <option>Primaria / Secundaria</option>
+          <option>Preparatoria / Bachillerato</option>
+          <option>Técnico / Vocacional</option>
+          <option>Licenciatura en curso</option>
+          <option>Licenciatura terminada</option>
+          <option>Posgrado (Maestría / Doctorado)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Ocupación principal</label>
+        <select id="ocupacion">
+          <option value="">Selecciona...</option>
+          <option>Estudiante</option>
+          <option>Empleado (empresa privada)</option>
+          <option>Empleado (gobierno)</option>
+          <option>Profesionista independiente</option>
+          <option>Empresario / Emprendedor</option>
+          <option>Deportista</option>
+          <option>Ama/o de casa</option>
+          <option>Jubilado / Pensionado</option>
+          <option>Otro</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="sec"><span>Nivel socioeconómico estimado</span><div class="sec-line"></div></div>
+    <div class="warn-box">Este dato es opcional y se usa únicamente para análisis estadístico y diseño de beneficios equitativos.</div>
+    <div class="radio-group" id="nse-opts">
+      <div class="radio-opt" onclick="radioG(this,'nse')"><div class="radio-circle"></div><div class="radio-text">A/B — Ingresos altos, acceso a todos los servicios premium</div></div>
+      <div class="radio-opt" onclick="radioG(this,'nse')"><div class="radio-circle"></div><div class="radio-text">C+ / C — Ingresos medios altos, cómodo con servicios de calidad</div></div>
+      <div class="radio-opt" onclick="radioG(this,'nse')"><div class="radio-circle"></div><div class="radio-text">C- / D+ — Ingresos medios, consciente del presupuesto</div></div>
+      <div class="radio-opt" onclick="radioG(this,'nse')"><div class="radio-circle"></div><div class="radio-text">D / E — Ingresos bajos, busca opciones accesibles</div></div>
+      <div class="radio-opt" onclick="radioG(this,'nse')"><div class="radio-circle"></div><div class="radio-text">Prefiero no especificar</div></div>
+    </div>
+
+    <div class="sec"><span>¿Cómo nos conociste?</span><div class="sec-line"></div></div>
+    <div class="chips" id="como-chips">
+      <div class="chip" onclick="singleC(this,'como-chips')">📱 Redes sociales</div>
+      <div class="chip" onclick="singleC(this,'como-chips')">👥 Me recomendaron</div>
+      <div class="chip" onclick="singleC(this,'como-chips')">🔍 Google / Internet</div>
+      <div class="chip" onclick="singleC(this,'como-chips')">🎪 Evento en CC</div>
+      <div class="chip" onclick="singleC(this,'como-chips')">🚗 Lo vi de paso</div>
+      <div class="chip" onclick="singleC(this,'como-chips')">📰 Publicidad impresa</div>
+      <div class="chip" onclick="singleC(this,'como-chips')">📺 TV / Radio</div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn-sec" onclick="go(2)">← Atrás</button>
+    <button class="btn-pri" onclick="go(4)">Continuar →</button>
+  </div>
+</div>
+
+<!-- ═══ STEP 4: INTERESES + APORTACIÓN ═══ -->
+<div class="step" id="step-4">
+  <div class="card">
+    <div class="card-head">
+      <div class="card-title">Tus intereses</div>
+      <div class="card-sub">Cuéntanos qué espacios y servicios de Cholula Center te interesan — así personalizamos lo que te enviamos.</div>
+    </div>
+
+    <div class="sec"><span>Servicios de interés</span><div class="sec-line"></div></div>
+    <div class="chips" id="svcs-chips">
+      <div class="chip" onclick="chip(this)">🏸 Canchas de Pádel</div>
+      <div class="chip" onclick="chip(this)">💪 Gimnasio</div>
+      <div class="chip" onclick="chip(this)">🏃 Fisioterapia</div>
+      <div class="chip" onclick="chip(this)">🎉 Salones de Eventos</div>
+      <div class="chip" onclick="chip(this)">🎭 Auditorio</div>
+      <div class="chip" onclick="chip(this)">📚 Aulas / Capacitación</div>
+      <div class="chip" onclick="chip(this)">⚖️ Salones Juicios Orales</div>
+      <div class="chip" onclick="chip(this)">🎬 Set de Televisión</div>
+      <div class="chip" onclick="chip(this)">🎙️ Cabina de Radio</div>
+      <div class="chip" onclick="chip(this)">🏢 Coworking / Oficinas</div>
+      <div class="chip" onclick="chip(this)">🛏️ Hospedaje</div>
+      <div class="chip" onclick="chip(this)">☕ Cafetería / Áreas comunes</div>
+      <div class="chip" onclick="chip(this)">🅿️ Estacionamiento</div>
+      <div class="chip" onclick="chip(this)">🤝 Networking / Eventos de empresa</div>
+    </div>
+
+    <div class="sec" style="margin-top:20px;"><span>Frecuencia de uso esperada</span><div class="sec-line"></div></div>
+    <div class="radio-group" id="freq-opts">
+      <div class="radio-opt" onclick="radioG(this,'freq')"><div class="radio-circle"></div><div class="radio-text">Diariamente o casi todos los días</div></div>
+      <div class="radio-opt" onclick="radioG(this,'freq')"><div class="radio-circle"></div><div class="radio-text">Varias veces a la semana</div></div>
+      <div class="radio-opt" onclick="radioG(this,'freq')"><div class="radio-circle"></div><div class="radio-text">Una o dos veces al mes</div></div>
+      <div class="radio-opt" onclick="radioG(this,'freq')"><div class="radio-circle"></div><div class="radio-text">Solo para eventos ocasionales</div></div>
+    </div>
+
+    <div class="sec" style="margin-top:20px;"><span>Inversión mensual estimada</span><div class="sec-line"></div></div>
+    <div class="chips" id="budget-chips">
+      <div class="chip" onclick="singleC(this,'budget-chips')">Menos de $500</div>
+      <div class="chip" onclick="singleC(this,'budget-chips')">$500 – $2,000</div>
+      <div class="chip sel" onclick="singleC(this,'budget-chips')">$2,001 – $5,000</div>
+      <div class="chip" onclick="singleC(this,'budget-chips')">$5,001 – $10,000</div>
+      <div class="chip" onclick="singleC(this,'budget-chips')">Más de $10,000</div>
+    </div>
+
+    <!-- TIPO B: APORTACIÓN -->
+    <div class="prov-section" id="prov-block" style="display:none;">
+      <div class="prov-title">⚡ Tu aportación al ecosistema (Tipo B)</div>
+
+      <div class="field">
+        <label>¿Qué tipo de aportación ofrecerás?</label>
+        <div class="aport-grid" id="aort-grid">
+          <div class="aort" onclick="selAort(this)"><div class="aort-icon">📦</div><div class="aort-label">Bienes / Productos</div><div class="aort-desc">Alimentos, materiales, equipo</div></div>
+          <div class="aort" onclick="selAort(this)"><div class="aort-icon">🔧</div><div class="aort-label">Servicios profesionales</div><div class="aort-desc">Consultoría, fisioterapia, diseño</div></div>
+          <div class="aort" onclick="selAort(this)"><div class="aort-icon">🏷️</div><div class="aort-label">Descuentos a la red</div><div class="aort-desc">Precios preferenciales para afiliados</div></div>
+          <div class="aort" onclick="selAort(this)"><div class="aort-icon">🏠</div><div class="aort-label">Espacio físico</div><div class="aort-desc">Local, sala, bodega, estudio</div></div>
+          <div class="aort" onclick="selAort(this)"><div class="aort-icon">⏰</div><div class="aort-label">Tiempo / Voluntariado</div><div class="aort-desc">Horas de apoyo, talleres, mentoría</div></div>
+          <div class="aort" onclick="selAort(this)"><div class="aort-icon">🎓</div><div class="aort-label">Conocimiento</div><div class="aort-desc">Cursos, conferencias, capacitación</div></div>
+          <div class="aort" onclick="selAort(this)"><div class="aort-icon">💻</div><div class="aort-label">Equipamiento</div><div class="aort-desc">Tecnología, herramientas</div></div>
+          <div class="aort" onclick="selAort(this)"><div class="aort-icon">💰</div><div class="aort-label">Patrocinio económico</div><div class="aort-desc">Aporte a FUNDAMEE o proyectos</div></div>
+        </div>
+      </div>
+
+      <div id="aort-detail" style="display:none;">
+        <div class="field">
+          <label>Describe qué ofreces exactamente</label>
+          <textarea id="desc-aort" placeholder="Ej. Catering a precio preferencial para eventos de 20+ personas · 2 horas mensuales de asesoría contable para afiliados · Clínica de pádel el primer sábado de cada mes..."></textarea>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label>Frecuencia / Disponibilidad</label>
+            <select id="frec-aort">
+              <option>Permanente · sin restricción</option>
+              <option>Mensual</option>
+              <option>Por evento o solicitud</option>
+              <option>Trimestral</option>
+              <option>Temporal / de temporada</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Capacidad o límite</label>
+            <input type="text" id="cap-aort" placeholder="Ej. 10 personas · Sin límite"/>
+          </div>
+        </div>
+        <div class="field">
+          <label>Condiciones o requisitos (opcional)</label>
+          <input type="text" id="cond-aort" placeholder="Ej. Solo fines de semana · Con cita previa · Mínimo 5 asistentes"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn-sec" onclick="go(3)">← Atrás</button>
+    <button class="btn-pri" onclick="go(5)">Revisar y confirmar →</button>
+  </div>
+</div>
+
+<!-- ═══ STEP 5: REFERIDO + CONFIRMAR ═══ -->
+<div class="step" id="step-5">
+  <div class="card">
+    <div class="card-head">
+      <div class="card-title">Revisa y confirma</div>
+      <div class="card-sub">Un último paso. Revisa tus datos, registra a quien te invitó (si aplica) y completa tu afiliación.</div>
+    </div>
+
+    <!-- Resumen -->
+    <div class="sec"><span>Resumen de tu afiliación</span><div class="sec-line"></div></div>
+    <div class="resumen-grid" id="resumen"></div>
+
+    <!-- Referido -->
+    <div class="ref-box" style="margin-top:18px;">
+      <div class="ref-title">🔗 Sistema de referidos (opcional)</div>
+      <div class="row2">
+        <div class="field" style="margin-bottom:0;">
+          <label>¿Quién te invitó a afiliarte?</label>
+          <input type="text" id="referidor" placeholder="Nombre de tu referidor"/>
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label>Código de referido</label>
+          <input type="text" id="cod-ref" placeholder="CC-REF-0000" style="text-transform:uppercase;letter-spacing:2px;"/>
+        </div>
+      </div>
+      <div style="margin-top:10px;background:#D4F0E0;border-radius:8px;padding:10px 12px;font-size:12px;color:#0E6830;line-height:1.5;">
+        🎁 Si registras un referidor, <strong>ambos recibirán beneficios adicionales</strong>: acceso preferente y descuento en la primera reserva dentro del complejo.
+      </div>
+    </div>
+
+    <!-- Autorización -->
+    <div style="margin-top:16px;background:var(--bg);border:1.5px solid var(--border);border-radius:14px;padding:14px;">
+      <div style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;" onclick="toggleAuth(this)">
+        <div id="auth-box" style="width:18px;height:18px;border-radius:5px;border:1.5px solid var(--border);flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:11px;background:#fff;transition:all .2s;"></div>
+        <div style="font-size:12px;color:var(--sub);line-height:1.6;">Autorizo a <strong style="color:var(--text)">Cholula Center y FUNDAMEE</strong> a usar mis datos para gestionar mi afiliación, enviarme comunicaciones relevantes e incluirme en análisis de mercado segmentado. Mis datos <strong>no serán vendidos a terceros</strong>.</div>
+      </div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn-sec" onclick="go(4)">← Editar</button>
+    <button class="btn-pri" onclick="enviar()">🎉 ¡Completar mi afiliación!</button>
+  </div>
+</div>
+
+<!-- SUCCESS -->
+<div class="success-wrap" id="success">
+  <div class="succ-icon">✓</div>
+  <div id="role-badge"></div>
+  <h2 class="succ-h2">¡Bienvenido a Cholula Center!</h2>
+  <p class="succ-p">Tu afiliación fue recibida exitosamente. Te contactaremos en menos de 24 horas para activar tus beneficios.</p>
+  <div class="folio-box">
+    <div class="folio-lbl">Tu número de folio</div>
+    <div class="folio-num" id="folio-num">CC-2025-0001</div>
+  </div>
+  <div id="prov-msg" style="display:none;background:var(--light);border:1px solid #F5D580;border-radius:12px;padding:14px;margin-bottom:18px;font-size:13px;color:#7A5800;line-height:1.5;max-width:400px;margin:0 auto 18px;">
+    ⭐ Tu aportación al ecosistema fue registrada. El equipo la revisará y activará tu visibilidad en el catálogo de proveedores.
+  </div>
+  <a href="https://wa.me/?text=Me%20acabo%20de%20afiliar%20a%20Cholula%20Center%20%F0%9F%8C%9F%20%C2%A1%C3%9Anete%20t%C3%BA%20tambi%C3%A9n!%20Es%20gratis%3A%20cholulacenter.github.io/afiliacion" target="_blank" style="display:inline-block;padding:11px 22px;background:var(--pri);color:#fff;border-radius:12px;font-size:13px;font-weight:700;text-decoration:none;margin-top:8px;">📱 Compartir por WhatsApp</a>
+</div>
+
+<div class="footer">
+  📍 Recta a Cholula #3500, San Andrés Cholula, Puebla<br/>
+  📞 221 183 3221 &nbsp;|&nbsp; <a href="mailto:eventos@cholulacenter.com">eventos@cholulacenter.com</a><br/>
+  <a href="https://cholulacenter.com" target="_blank">www.cholulacenter.com</a>
+</div>
+</div>
+
+<script>
+let tipoAfiliado='', authOK=false;
+const PCTS=[10,30,50,70,90];
+
+function setTipo(t){
+  tipoAfiliado=t;
+  document.getElementById('btn-a').className='role-card'+(t==='A'?' sel-a':'');
+  document.getElementById('btn-b').className='role-card'+(t==='B'?' sel-b':'');
+}
+
+function go(n){
+  if(n===2&&!tipoAfiliado){alert('Por favor selecciona tu tipo de afiliación.');return;}
+  if(n===5){buildResumen();}
+
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('step-'+n).classList.add('active');
+
+  for(let i=1;i<=5;i++){
+    const c=document.getElementById('c'+i), l=document.getElementById('l'+i), sp=document.getElementById('sp'+i);
+    c.className='st-circle';l.className='st-lbl';
+    if(i<n){c.classList.add('done');c.textContent='✓';}
+    else if(i===n){c.classList.add('act');c.textContent=i;l.classList.add('act');}
+    else{c.textContent=i;}
+    if(sp) sp.className='st-sep'+(i<n?' done':'');
+  }
+  document.getElementById('pfill').style.width=PCTS[n-1]+'%';
+
+  // Show/hide provider block
+  if(n===4) document.getElementById('prov-block').style.display=tipoAfiliado==='B'?'block':'none';
+
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function chip(el){el.classList.toggle('sel');}
+function singleC(el,cid){document.getElementById(cid).querySelectorAll('.chip').forEach(c=>c.classList.remove('sel'));el.classList.add('sel');}
+function radioG(el,grp){el.closest('.radio-group').querySelectorAll('.radio-opt').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');}
+function selAort(el){document.querySelectorAll('.aort').forEach(a=>a.classList.remove('sel'));el.classList.add('sel');document.getElementById('aort-detail').style.display='block';}
+function toggleAuth(wrap){authOK=!authOK;const box=document.getElementById('auth-box');box.style.background=authOK?'#1A7A3C':'#fff';box.style.borderColor=authOK?'#1A7A3C':'var(--border)';box.textContent=authOK?'✓':'';}
+
+function resRow(label,val){
+  if(!val||val==='') return '';
+  return `<div class="res-row"><span class="res-label">${label}</span><span class="res-val">${val}</span></div>`;
+}
+
+function buildResumen(){
+  const rol={A:'Tipo A · Solo Beneficiario 🎁',B:'Tipo B · Beneficiario + Proveedor ⚡'}[tipoAfiliado]||'–';
+  const svcs=[...document.querySelectorAll('#svcs-chips .chip.sel')].map(c=>c.textContent).join(', ')||'–';
+  const aortEl=document.querySelector('.aort.sel .aort-label');
+  let html=`<div class="resumen-grid">
+    ${resRow('Tipo',rol)}
+    ${resRow('Nombre',document.getElementById('nombre').value)}
+    ${resRow('Correo',document.getElementById('email').value)}
+    ${resRow('Teléfono',document.getElementById('tel').value)}
+    ${resRow('Municipio',document.getElementById('municipio').value)}
+    ${resRow('Perfil',document.getElementById('tipo-perfil').value)}
+    ${resRow('Giro',document.getElementById('giro').value)}
+    ${resRow('Edad',document.getElementById('edad').value)}
+    ${resRow('Género',document.getElementById('genero').value)}
+    ${resRow('Estudios',document.getElementById('estudios').value)}
+    ${resRow('Servicios',svcs)}
+    ${tipoAfiliado==='B'&&aortEl?resRow('Aportación',aortEl.textContent):''}
+  </div>`;
+  document.getElementById('resumen').innerHTML=html;
+}
+
+function enviar(){
+  const nombre=document.getElementById('nombre').value.trim();
+  const email=document.getElementById('email').value.trim();
+  if(!nombre||!email){alert('Por favor completa al menos tu nombre y correo.');return;}
+  if(!tipoAfiliado){alert('Por favor selecciona tu tipo de afiliado.');return;}
+
+  const folio='CC-2025-'+String(Math.floor(Math.random()*9000)+1000).padStart(4,'0');
+  document.getElementById('folio-num').textContent=folio;
+
+  const badgeColor=tipoAfiliado==='A'?'background:#FFF5F6;border:1px solid #C8102E;color:#C8102E':'background:var(--light);border:1px solid #F5A800;color:#7A5800';
+  const badgeText=tipoAfiliado==='A'?'Tipo A · Beneficiario activado 🎁':'Tipo B · Perfil dual activado ⚡';
+  document.getElementById('role-badge').innerHTML=`<div style="${badgeColor};border-radius:100px;padding:6px 16px;font-size:12px;font-weight:700;display:inline-block;margin-bottom:14px;">${badgeText}</div>`;
+  if(tipoAfiliado==='B') document.getElementById('prov-msg').style.display='block';
+
+  // Send to Google Sheets via Apps Script (when deployed)
+  const data={
+    folio,tipo:tipoAfiliado,nombre,email,
+    tel:document.getElementById('tel').value,
+    municipio:document.getElementById('municipio').value,
+    cp:document.getElementById('cp').value,
+    perfil:document.getElementById('tipo-perfil').value,
+    giro:document.getElementById('giro').value,
+    edad:document.getElementById('edad').value,
+    genero:document.getElementById('genero').value,
+    estadoCivil:document.getElementById('estado-civil').value,
+    hijos:document.getElementById('hijos').value,
+    estudios:document.getElementById('estudios').value,
+    ocupacion:document.getElementById('ocupacion').value,
+    referidor:document.getElementById('referidor').value,
+    codigoRef:document.getElementById('cod-ref').value,
+    timestamp:new Date().toISOString(),
+  };
+  console.log('Datos del afiliado listos para enviar a Google Sheets:', data);
+  // fetch('TU_APPS_SCRIPT_URL',{method:'POST',body:JSON.stringify(data)});
+
+  document.querySelectorAll('.step').forEach(s=>s.style.display='none');
+  document.querySelector('.prog-wrap').style.display='none';
+  document.querySelector('.top-header').style.background='#1A7A3C';
+  document.getElementById('success').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
